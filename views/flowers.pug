@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - var Flowers=[{Flower_type:"Rose",num_Flowers:"2",Flowers_cost:400},{Flower_type:"Lilly",num_Flowers:"4",Flowers_cost:2000},{Flower_type:"Jasmine",num_Flowers:"3",Flowers_cost:3000}]
+  div(class="container-fluid")
+  div(class="row")
+   each i,index  in Flowers
+    div(class="col-sm-2" onclick =`buy(${index})`) #{i.Flower_type}, #{i.num_Flowers}, #{i.Flowers_cost}
+    script.
+        function buy(a)
+        {
+            alert(`You purchased Item ${a+1}`)
+        }
