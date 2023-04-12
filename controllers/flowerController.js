@@ -27,5 +27,15 @@ exports.flower_update_put = function(req, res) {
  res.send('NOT IMPLEMENTED: flower update PUT' + req.params.id);
 }
 
-
+exports.flower_view_all_Page = async function(req, res) {
+    try{
+    theFlowers = await Flower.find();
+    res.render('flowers', { title: 'Flower Search Results', results: theFlowers });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    } 
+   };
+   
    

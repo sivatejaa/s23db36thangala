@@ -1,14 +1,11 @@
 var express = require('express');
+const flowers_controlers= require('../controllers/flowerController');
+
 var router = express.Router();
 
 /* GET home page. */
 
-router.get('/', function (req, res) {
-    res.render('flowers', { title: 'Search Results - Flowers' });
-  });
-  function buy(index) {
-    alert(`You purchased item ${index}.`);
-  }
+router.get('/', flowers_controlers.flower_view_all_Page );
   module.exports = router;
 
   
