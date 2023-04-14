@@ -67,9 +67,23 @@ async function recreateDB() {
   let instance2 = new Flower({ flower_type: 'Lilly', size: 'medium', cost: 18.9 });
   let instance3 = new Flower({ flower_type: 'Jasmine', size: 'small', cost: 12.5 });
   
-  await instance1.save();
-  await instance2.save();
-  await instance3.save();
+  instance1.save().then(doc=>{
+    console.log("First object saved"+doc)
+     }).catch(err=>{
+    console.error(err)
+    });
+
+    instance2.save().then(doc=>{
+      console.log("First object saved"+doc)
+    }).catch(err=>{
+      console.error(err)
+      });
+
+      instance3.save().then(doc=>{
+        console.log("First object saved"+doc)
+      }).catch(err=>{
+        console.error(err)
+        });
   
   console.log('Data seeded successfully!');
 }
