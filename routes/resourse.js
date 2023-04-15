@@ -3,6 +3,7 @@ var router = express.Router();
 // Require controller modules.
 var api_controller = require('../controllers/api');
 var flower_controller = require('../controllers/flowerController');
+var flower_detail_controller = require('../controllers/flower_detail_controller');
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
@@ -17,4 +18,8 @@ router.put('/flowers/:id', flower_controller.flower_update_put);
 router.get('/flowers/:id', flower_controller.flower_detail);
 // GET request for list of all flower items.
 router.get('/flowers', flower_controller.flower_list);
+
+
+
+
 module.exports = router

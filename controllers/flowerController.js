@@ -45,9 +45,18 @@ exports.flower_create_post = async function(req, res) {
     } 
    }
 // Handle flower delete form on DELETE.
-exports.flower_delete = function(req, res) {
- res.send('NOT IMPLEMENTED: flower delete DELETE ' + req.params.id);
-};
+
+exports.flower_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Flower.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+   };
 // Handle flower update form on PUT.
 
 
@@ -57,8 +66,8 @@ exports.flower_update_put = async function(req, res) {
     try {
     let toUpdate = await Flower.findById( req.params.id)
     // Do updates of properties
-    if(req.body.costume_type)
-    toUpdate.costume_type = req.body.costume_type;
+    if(req.body.flower_type)
+    toUpdate.flower_type = req.body.flower_type;
     if(req.body.cost) toUpdate.cost = req.body.cost;
     if(req.body.size) toUpdate.size = req.body.size;
     let result = await toUpdate.save();
