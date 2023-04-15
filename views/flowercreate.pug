@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    h1= title
+
+    form(id='flowerForm', action="/resourse/flowers", method="POST")
+        div.form-group
+            label.flowerAttr(for='flower_type') flower type
+            input#flower_type(type='text', name='flower_type')
+        div.form-group
+            label.flowerAttr(for='size') flower size
+            input#size(type='text', name='size')
+        div.form-group
+            label.flowerAttr(for='cost') flower cost
+            input#cost(type='number', name='cost')
+        input(type="submit")
+    script.
+        document.forms['flowerForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            fetch(event.target.action, {
+                method: 'POST',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Save succeded")
+
+            }).catch((error) => {
+
+                alert("Save failed " + error )
+            });
+        });

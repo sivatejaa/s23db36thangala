@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    h1= title
+    - let flowerid = toShow._id
+    form(id='flowerForm', action="/resourse/flowers/" + toShow._id, method="PUT")
+        div.form-group
+            label.flowerAttr(for='flower_type') flower type
+            input#flower_type(type='text', name='flower_type', value=toShow.flower_type) 
+        div.form-group
+            label.flowerAttr(for='size') flower size
+            input#size(type='text', name='size', value=toShow.size)
+        div.form-group
+            label.flowerAttr(for='cost') flower cost
+            input#cost(type='number', name='cost', value=toShow.cost)
+        input(type="submit")
+        div
+             p Flower ID: #{flowerid}
+    script.
+        document.forms['flowerForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            fetch(event.target.action, {
+                method: 'PUT',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Save succeded")
+
+            }).catch((error) => {
+
+                alert("Save failed " + error )
+            });
+        });

@@ -3,7 +3,7 @@ var router = express.Router();
 // Require controller modules.
 var api_controller = require('../controllers/api');
 var flower_controller = require('../controllers/flowerController');
-var flower_detail_controller = require('../controllers/flower_detail_controller');
+
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
