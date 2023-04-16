@@ -1,0 +1,49 @@
+extends layout
+block content
+    h1= title
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let flowerid = toShow._id
+        - let flower_type = toShow.flower_type
+        - let flowercost = toShow.cost
+        - let flowersize = toShow.size
+        - let actionid = "/resourse/flowers/" + flowerid
+        script let actionid = "#{actionid}"
+        div
+            div.row
+                div(class='flowerAttr mr-3') Flower ID is:
+                div #{flowerid}
+            div.row
+                div(class='flowerAttr mr-3') Flower Type is:
+                div #{flower_type}
+            div.row
+                div(class='flowerAttr mr-3') Flower Size is:
+                div #{flowersize}
+            div.row
+                div(class='flowerAttr mr-3') Flower Cost is:
+                div #{flowercost}
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    
+    script.
+        function cancel() {   
+            window.location.href='/flowers'
+        }
+    script.
+         function deleteOnid() {
+            console.log("starting delete")
+
+            fetch(actionid, {
+                 method: 'DELETE' 
+            }).then((resp) => {
+                 return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Delete succeded")
+                window.location.href='/flowers'
+ 
+            }).catch((error) => {
+ 
+                alert("Delete failed " + error )
+            });
+        }
