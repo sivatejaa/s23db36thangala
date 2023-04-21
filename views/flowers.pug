@@ -2,13 +2,15 @@ extends layout
 
 block content
   h1= title
-  - var Flowers=results
+  - var items=results
   div(class="container-fluid")
-  div(class="row")
-   each i,index  in Flowers
-    div(class="col-sm-2" onclick =`buy(${index})`) #{i.flower_type}, #{i.size}, #{i.cost}
-    script.
-        function buy(a)
-        {
-            alert(`You purchased Item ${a+1}`)
-        }
+    div(class="row m-1")
+      each item in items
+        - let destination = `dispatch(\"/flowers/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Flower #{item.flower_type}(#{item.size}) is #{item.cost}
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
