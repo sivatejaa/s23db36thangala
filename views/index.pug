@@ -1,8 +1,38 @@
 extends layout
 
 block content
-  h1= title
+  
+  .container
+    h1= title
+    h1 Welcome to our Flowers Shop!
+    p We have a wide selection of Flowers for all occasions. Browse our collection or create your own!
+    
+
+    if (!user)
+      p Please log in or register to get started.
+      a(href="/login") Login
+      br
+      a(href="/register") Register
+       br
+      br
+      br
+      br
+      br
+      br
+
+    if (user)
+      p Welcome, #{user.username}! What would you like to do?
+      a(href="/flowers") Flowers
+      br
+      a(href="/logout") Logout
+      br
+      br
+      br
+      br
+      br
+      br
   p Welcome to the PUG Demo #{title}
+  
   button(type="button", class="btn btn-primary" onclick="doReduce()") Press Me
   div#reduce Reduce the value 
   script.
@@ -14,4 +44,4 @@ block content
       document.getElementById("reduce").innerHTML = "Count " + count + " with change " + change;
     }
 
-  a(href="/flowers") Flowers
+ 

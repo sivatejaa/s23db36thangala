@@ -8,7 +8,7 @@ block content
       each item in items
         - let destination = `dispatch(\"/flowers/update?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") Flower #{item.flower_type}(#{item.size}) is #{item.cost}
-        button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
 
   script.
     function dispatch(path){
